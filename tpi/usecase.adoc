@@ -1,0 +1,96 @@
+//ifdef::env-github[]
+// :kroki-server-url: http://127.0.0.1:8000
+//endif::[]
+:imagesdir: ./images
+:stylesheet: daro-dark.css
+
+= Trabajo Practico integrador
+
+== Diagramas de casos de uso
+
+ifdef::env-github[]
+[%collapsible]
+endif::[]
+ifndef::env-github[]
+[%collapsible%open]
+endif::[]
+====
+
+[plantuml, target=infr2599146368, svg]
+....
+@startuml
+
+!theme spacelab
+
+:Cliente: as cli
+:Administrativo: as adm
+
+rectangle {
+    (Registro) as (reg)
+    (Pago[Cuota o actividad]) as (pago)
+    (Entregar Carnet) as (entcar)
+}
+
+(cli) -r-> (reg)
+(reg) --> (pago)
+(reg) <.r. (entcar)
+(cli) -r-> (pago)
+
+rectangle {
+    (Reporte vencimientos del dia) as (vendia)
+    (adm) -r-> (vendia)
+}
+
+@enduml
+....
+
+====
+ifdef::env-github[]
+image::infr2109780832.svg[] 
+endif::[]
+
+
+
+
+
+
+ifdef::env-github[]
+[%collapsible]
+endif::[]
+ifndef::env-github[]
+[%collapsible%open]
+endif::[]
+====
+
+[plantuml, target=infr956822819, svg]
+....
+@startuml
+
+!theme spacelab
+
+:Cliente: as cli
+:Administrativo: as adm
+
+rectangle {
+    (Registro) as (reg)
+    (Pago[Cuota o actividad]) as (pago)
+    (Entregar Carnet) as (entcar)
+}
+
+(cli) -r-> (reg)
+(reg) --> (pago)
+(reg) <.r. (entcar)
+(cli) -r-> (pago)
+
+rectangle {
+    (Reporte vencimientos del dia) as (vendia)
+    (adm) -r-> (vendia)
+}
+
+@enduml
+....
+
+====
+ifdef::env-github[]
+image::infr956822819.svg[] 
+endif::[]

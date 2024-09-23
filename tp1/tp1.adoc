@@ -1,0 +1,67 @@
+:kroki-server-url: http://127.0.0.1:8000
+:imagesdir: ./images
+:doctype: book
+
+[role="big"]
+# Modelado y Diseño de Software
+# Comisión 1A
+# Equipo 20
+# Marcelo Pereira
+# Gonzalo Coronel
+
+<<<
+:pagebreak:
+
+[mermaid, target=der, svg]
+....
+erDiagram
+
+    CLIENTE {
+        int ID PK
+        string NOMBRE
+        string APELLIDO
+        string DNI
+        string EMAIL
+        string TELEFONO
+    }
+
+    PASAJERO {
+        int ID PK
+        int CLIENTE_ID FK
+        int CONTRATO_ID FK
+
+    }
+
+    CONTRATO {
+        int ID PK
+        int CLIENTE_ID FK
+        int TOUR_ID FK
+        date FECHA_CONTRATACION
+        string ESTADO
+        int CANTIDAD_CUOTAS
+    }
+    
+    TOUR {
+        int ID PK
+        string DESTINO
+        date FECHA_INICIO
+        date FECHA_FIN
+        float IMPORTE
+        int CUPO
+    }
+
+    CUOTAS {
+        int ID PK
+        int CONTRATO_ID FK
+        int NUMERO_CUOTA
+        date FECHA_VENCIMIENTO
+        date FECHA_PAGO
+    }
+
+    CLIENTE ||--o{ CONTRATO : "firma"
+    CLIENTE ||--|| PASAJERO : "es un"
+    CONTRATO ||--o{ PASAJERO : "conetiene"
+    CONTRATO }o--|| TOUR : "corresponde a"
+    CONTRATO ||--o{ CUOTAS : "tiene"
+....
+
