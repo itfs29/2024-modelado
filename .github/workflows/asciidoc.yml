@@ -60,7 +60,7 @@ jobs:
             mv $fileSource $fileDestination
           done
       - name: list tpi/*.*
-        run: ls documentation/*.* -l
+        run: ls *.* -l
       - name: tpi/images/*.*
         run: ls tpi/images/*.* -l
       - uses: stefanzweifel/git-auto-commit-action@v4
