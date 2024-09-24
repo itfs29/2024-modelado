@@ -41,7 +41,7 @@ rectangle {
 
 ====
 ifdef::env-github[]
-image::infr2109780832.svg[] 
+image::infr2599146368.svg[] 
 endif::[]
 
 
