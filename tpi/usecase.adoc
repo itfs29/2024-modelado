@@ -23,7 +23,6 @@ endif::[]
 !theme spacelab
 
 :Cliente: as cli
-:Administrativo: as adm
 
 rectangle {
     (Registro) as (reg)
@@ -36,10 +35,6 @@ rectangle {
 (reg) <.r. (entcar)
 (cli) -r-> (pago)
 
-rectangle {
-    (Reporte vencimientos del dia) as (vendia)
-    (adm) -r-> (vendia)
-}
 
 @enduml
 ....
@@ -68,19 +63,7 @@ endif::[]
 
 !theme spacelab
 
-:Cliente: as cli
 :Administrativo: as adm
-
-rectangle {
-    (Registro) as (reg)
-    (Pago[Cuota o actividad]) as (pago)
-    (Entregar Carnet) as (entcar)
-}
-
-(cli) -r-> (reg)
-(reg) --> (pago)
-(reg) <.r. (entcar)
-(cli) -r-> (pago)
 
 rectangle {
     (Reporte vencimientos del dia) as (vendia)
@@ -94,3 +77,6 @@ rectangle {
 ifdef::env-github[]
 image::infr956822819.svg[] 
 endif::[]
+
+== Diagramas de clases
+
