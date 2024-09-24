@@ -1,6 +1,6 @@
-//ifdef::env-github[]
-// :kroki-server-url: http://127.0.0.1:8000
-//endif::[]
+ifdef::env-github[]
+:kroki-server-url: http://127.0.0.1:8000
+endif::[]
 :imagesdir: ./images
 :stylesheet: daro-dark.css
 
