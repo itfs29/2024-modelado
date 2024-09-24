@@ -3,7 +3,7 @@ name: ADOC to Github Convert
 on:
   push:
     branches:
-      - development
+      - main
     paths:
       - "tpi/*.adoc"
       - ".github/workflows/asciidoc.yml"
