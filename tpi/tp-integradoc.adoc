@@ -21,6 +21,8 @@ Desarrollar diagramas de clases en plantuml de la siguiente funcionalidad:
 
 == Diagramas de casos de uso
 
+=== Socio
+
 ifdef::env-github[]
 [%collapsible]
 endif::[]
@@ -35,11 +37,11 @@ endif::[]
 
 !theme spacelab
 
-:Cliente: as cli
+:Socio: as cli
 
 rectangle {
     (Registro) as (reg)
-    (Pago[Cuota o actividad]) as (pago)
+    (Pago Cuota) as (pago)
     (Entregar Carnet) as (entcar)
 }
 
@@ -60,7 +62,46 @@ endif::[]
 
 
 
+=== No socio
 
+
+ifdef::env-github[]
+[%collapsible]
+endif::[]
+ifndef::env-github[]
+[%collapsible%open]
+endif::[]
+====
+
+[plantuml, target=i4011554949, svg]
+....
+@startuml
+
+!theme spacelab
+
+:No Socio: as cli
+
+rectangle {
+    (Registro) as (reg)
+    (Pago de Actividad) as (pago)
+}
+
+(cli) -r-> (reg)
+(reg) --> (pago)
+(cli) -r-> (pago)
+
+
+@enduml
+....
+
+====
+ifdef::env-github[]
+image::i4011554949.svg[] 
+endif::[]
+
+
+
+=== Admistrador
 
 ifdef::env-github[]
 [%collapsible]
