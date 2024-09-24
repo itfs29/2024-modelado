@@ -16,7 +16,7 @@ ifndef::env-github[]
 endif::[]
 ====
 
-[plantuml, target=infr2599146368, svg]
+[plantuml, target=i2599146368, svg]
 ....
 @startuml
 
@@ -41,7 +41,7 @@ rectangle {
 
 ====
 ifdef::env-github[]
-image::infr2599146368.svg[] 
+image::i2599146368.svg[] 
 endif::[]
 
 
@@ -57,7 +57,7 @@ ifndef::env-github[]
 endif::[]
 ====
 
-[plantuml, target=infr956822819, svg]
+[plantuml, target=i32791283, svg]
 ....
 @startuml
 
@@ -75,7 +75,7 @@ rectangle {
 
 ====
 ifdef::env-github[]
-image::infr956822819.svg[] 
+image::i32791283.svg[] 
 endif::[]
 
 == Diagramas de clases
