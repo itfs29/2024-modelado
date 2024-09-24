@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="generator" content="Asciidoctor 2.0.23">
+<title>Trabajo Practico integrador</title>
+<style>
+/* Asciidoctor default stylesheet | MIT License | https://asciidoctor.org */
+
+@import url(//fonts.googleapis.com/css?family=Noto+Sans);
+@import url(https://cdn.jsdelivr.net/gh/asciidoctor/asciidoctor@2.0/data/stylesheets/asciidoctor-default.css); /* Default asciidoc style framework - important */
+
+/* CUSTOMISATIONS */
+/* Change the values in root for quick customisation. If you want even more fine grain... venture further. */
+:root{
+--maincolor:#21252b;
+--primarycolor:#f39c12;
+--secondarycolor:#03a9f4;
+--tertiarycolor:#4db6ac;
+--sidebarbackground:#282c34;
+--linkcolor:white;
+--linkcoloralternate:white;
+--white:#FFFFFF;
+}
+
+/* Text styles */
+
+body{font-family: "Noto Sans",sans-serif;background-color: var(--maincolor);color:var(--white);}
+
+h1{color:var(--primarycolor) !important;font-family:"Noto Sans",sans-serif;}
+h2,h3,h4,h5,h6{color:var(--secondarycolor) !important;font-family:"Noto Sans",sans-serif;}
+.title{color:var(--white) !important;font-family:"Noto Sans",sans-serif;font-style: normal; font-weight: normal;}
+p{font-family: "Noto Sans",sans-serif ! important}
+#toc.toc2 a:link{color:var(--linkcolor);}
+#toc.toc2 a:visited{color:var(--linkcolor);}
+blockquote{color:var(--tertiarycolor) !important}
+.quoteblock{color:var(--white)}
+code{color:var(--linkcoloralternate);background-color: var(--sidebarbackground) !important}
+
+
+/* Table styles */
+th{background-color: var(--maincolor);color:var(--white) !important;}
+td{background-color: var(--maincolor);color: var(--linkcoloralternate) !important}
+
+
+#toc.toc2{background-color:var(--sidebarbackground);}
+#toctitle{color:var(--white);}
+
+/* Responsiveness fixes */
+video {
+  max-width: 100%;
+}
+
+@media all and (max-width: 600px) {
+  table {
+    width: 55vw!important;
+    font-size: 3vw;
+  }
+}
+
+.exampleblock > .content {
+  background-color: var(--maincolor);
+}
+
+a {
+  color: var(--secondarycolor);
+}
+
+.admonitionblock td.icon .icon-tip::before {
+  text-shadow: none;
+  color: var(--white);
+}
+.admonitionblock td.icon .icon-note::before {
+  color: var(--tertiarycolor);
+}
+.admonitionblock td.icon .icon-important::before {
+  color: var(--linkcolor);
+}
+/*.admonitionblock td.icon .icon-caution::before {
+  color: var(--linkcoloralternate);
+}*/
+.admonitionblock td.icon .icon-warning::before {
+  color: var(--primarycolor);
+}
+
+#preamble > .sectionbody > .paragraph:first-of-type p {
+  color: var(--white);
+}
+
+.quoteblock blockquote::before {
+  color: var(--primarycolor);
+}
+.quoteblock .attribution cite, .verseblock .attribution cite {
+  color: var(--white);
+}
+.verseblock pre {
+  color: var(--white);
+}
+.quoteblock blockquote, .quoteblock blockquote p {
+  color: var(--white);
+}
+
+.sidebarblock {
+  background: var(--sidebarbackground);
+}
+.literalblock pre, .listingblock pre:not(.highlight), .listingblock pre[class="highlight"], .listingblock pre[class^="highlight "], .listingblock pre.CodeRay, .listingblock pre.prettyprint {
+  background: var(--sidebarbackground);
+  color: var(--white);
+}
+
+#header .details {
+  color: var(--white);
+}
+#header .details span.email a {
+  color: var(--linkcoloralternate);
+}
+
+</style>
+</head>
+<body class="article">
+<div id="header">
+<h1>Trabajo Practico integrador</h1>
+</div>
+<div id="content">
+<div class="sect1">
+<h2 id="_descripcion">Descripcion</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>La cuota se abona por adelantado, en efectivo o tarjeta de crédito. Si se abona con tarjeta de crédito existen promociones en 3 y 6 cuotas.
+La inscripción por primera vez en el club implica completar los datos de la ficha y presentar apto físico.
+Posee un plantel propio de profesores, y en caso de ausencias recurre al listado de suplentes para cubrirlos.
+Vencido el período de pago, automáticamente el socio no puede realizar actividades.
+Para retomar, debe pagar la cuota, y el plazo de pago comienza a correr a partir del día siguiente al vencimiento de la cuota.</p>
+</div>
+<div class="paragraph">
+<p>Desarrollar diagramas de clases en plantuml de la siguiente funcionalidad:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Registro de los socios y de los no socios</p>
+</li>
+<li>
+<p>Entrega de carnet y cobro de cuota mensual o diaria</p>
+</li>
+<li>
+<p>Listado diario de los socios que en la fecha les vence la cuota</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_diagramas_de_casos_de_uso">Diagramas de casos de uso</h2>
+<div class="sectionbody">
+<details>
+<summary class="title">Details</summary>
+<div class="content">
+<div class="imageblock kroki">
+<div class="content">
+<img src="./images/i2599146368-03a08bb93ac963ab34f8af741b877a31954b2f6f06293ff95777f72bde527898.svg" alt="i2599146368">
+</div>
+</div>
+</div>
+</details>
+<div class="imageblock">
+<div class="content">
+<img src="./images/i2599146368.svg" alt="i2599146368">
+</div>
+</div>
+<details>
+<summary class="title">Details</summary>
+<div class="content">
+<div class="imageblock kroki">
+<div class="content">
+<img src="./images/i32791283-538d14f2e68f7f703d2fb8625b191903ff53ecf470729d65b4a4ad3a5ebbb26f.svg" alt="i32791283">
+</div>
+</div>
+</div>
+</details>
+<div class="imageblock">
+<div class="content">
+<img src="./images/i32791283.svg" alt="i32791283">
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_diagramas_de_clases">Diagramas de clases</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>poner aca el diagrama de clases</p>
+</div>
+<div class="paragraph">
+<p>clases:
+    cliente. (agregar tipo de cliente socio, no socio)&#8230;&#8203; Ojo, puede ser clase persona, y luego extender socio y no socio
+        datos del socio
+        nro socio</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>registro (cliente, aptoFisico)
+    apto-fisico
+    cliente</pre>
+</div>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>carnet(cliente)
+    entregar(cliente) -&gt; se entrega a todos los clientes (socio y no socio) porque alli figura el nro de socio</pre>
+</div>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>cuota
+    atributos
+        fecha vencimiento
+        fecha pago
+        medio pago
+        actividad
+        nro socio
+    metodos
+        pagar</pre>
+</div>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>medios pago
+    id
+    nombre
+    cuotas-permitidas</pre>
+</div>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>actividad
+    id
+    nombre</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>aca pongo la sugerencia de gpt</p>
+</div>
+<details>
+<summary class="title">Details</summary>
+<div class="content">
+<div class="imageblock kroki">
+<div class="content">
+<img src="./images/i880841834-c62279876b77b9d896ca4c61938b7d0ded8847e8e61cbc738ff0cd1b4bb57d0f.svg" alt="i880841834">
+</div>
+</div>
+</div>
+</details>
+<div class="imageblock">
+<div class="content">
+<img src="./images/i880841834.svg" alt="i880841834">
+</div>
+</div>
+</div>
+</div>
+</div>
+<div id="footer">
+<div id="footer-text">
+Last updated 2024-09-24 12:27:50 UTC
+</div>
+</div>
+</body>
+</html>
