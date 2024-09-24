@@ -74,9 +74,11 @@ rectangle {
 ....
 
 ====
+
 ifdef::env-github[]
 image::i32791283.svg[] 
 endif::[]
 
 == Diagramas de clases
 
+poner aca el diagrama de clases
