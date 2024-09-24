@@ -94,45 +94,6 @@ endif::[]
 
 == Diagramas de clases
 
-poner aca el diagrama de clases
-
-clases:
-    cliente. (agregar tipo de cliente socio, no socio)... Ojo, puede ser clase persona, y luego extender socio y no socio
-        datos del socio
-        nro socio
-
-    registro (cliente, aptoFisico)
-        apto-fisico
-        cliente
-
-    carnet(cliente)
-        entregar(cliente) -> se entrega a todos los clientes (socio y no socio) porque alli figura el nro de socio
-
-    cuota
-        atributos
-            fecha vencimiento
-            fecha pago
-            medio pago
-            actividad
-            nro socio
-        metodos
-            pagar
-
-    medios pago
-        id
-        nombre
-        cuotas-permitidas
-
-    actividad
-        id
-        nombre
-
-
-
-
-aca pongo la sugerencia de gpt
-
-
 ifdef::env-github[]
 [%collapsible]
 endif::[]
@@ -147,68 +108,70 @@ endif::[]
 
 !theme spacelab
 
+class Persona {
+    -nombre: String
+    -apellido: String
+    -dni: String
+}
+
 class Socio {
-    -nombre: String
-    -apellido: String
-    -dni: String
     -fechaInscripcion: Date
-    -fechaVencimientoCuota: Date
-    -pagoAlDia(): Boolean
-    +registrarSocio(): void
-    +pagarCuota(cuota: Cuota): void
-}
-
-class NoSocio {
-    -nombre: String
-    -apellido: String
-    -dni: String
-}
-
-class Cuota {
-    -monto: Double
-    -fechaVencimiento: Date
-    -tipoCuota: String <<enumeration>> { Mensual, Diaria }
-    +cobrarCuota(): void
+    -cuotaDiaVencimiento: Int
+    -cuotaFechaUltimoPago: Int
+    -cuotas: Cuota[]
+    -carnet: Carnet
+    +registrar(): Socio
+    +pagar(cuota: Cuota): void
 }
 
 class Carnet {
-    -numeroCarnet: String
+    -numeroCarnet: Int
     -fechaEmision: Date
-    -socio: Socio
-    +emitirCarnet(): void
+    +emitir(socio: Socio): void
 }
 
-class Profesor {
+Socio *-- Carnet
+
+
+class NoSocio {
+    -actividades: Actividad[]
+    +registrar(): NoSocio
+    +pagar(actividad: Actividad): void
+}
+
+class Actividad {
     -nombre: String
-    -apellido: String
-    -dni: String
-    +reemplazarProfesor(): void
+    -importe: Double
 }
 
-class AusenciaProfesor {
-    -fechaAusencia: Date
-    -profesor: Profesor
-    +registrarAusencia(): void
-    +asignarSuplente(): void
+NoSocio *-- Actividad
+
+Persona <|-- Socio
+Persona <|-- NoSocio
+
+class Cuota {
+    -importe: Double
+    -fechaVencimiento: Date
+    -cantidadCuotas: Int
+    -fechaPago: Date
+    -medioPago: MedioPago
 }
 
-class PromocionPago {
-    -numeroCuotas: Integer <<enumeration>> { TresCuotas, SeisCuotas }
-    -descuento: Double
-    +aplicarPromocion(): void
+Socio *-- Cuota
+
+class MedioPago {
+    -cuotasPermitidas: Int
+    -nombre: String
 }
 
-class ListadoCuotasVencidas {
-    -fechaListado: Date
-    +generarListado(): void
+class ReporteVencimientos {
+    +generar(fechaVencimiento): List<Socio>
 }
 
-Socio "1" -- "1" Carnet : recibe
-Socio "1" -- "1..*" Cuota : paga
-Cuota "0..*" -- "1" PromocionPago : incluye
-AusenciaProfesor "1" -- "1" Profesor : gestiona
 
-ListadoCuotasVencidas -- Socio : consulta
+Cuota *-- MedioPago
+
+ReporteVencimientos o-- Socio
 
 @enduml
 
