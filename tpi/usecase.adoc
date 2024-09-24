@@ -3,6 +3,22 @@
 
 = Trabajo Practico integrador
 
+
+== Descripcion
+
+La cuota se abona por adelantado, en efectivo o tarjeta de crédito. Si se abona con tarjeta de crédito existen promociones en 3 y 6 cuotas. 
+La inscripción por primera vez en el club implica completar los datos de la ficha y presentar apto físico.
+Posee un plantel propio de profesores, y en caso de ausencias recurre al listado de suplentes para cubrirlos.
+Vencido el período de pago, automáticamente el socio no puede realizar actividades. 
+Para retomar, debe pagar la cuota, y el plazo de pago comienza a correr a partir del día siguiente al vencimiento de la cuota.
+
+
+Desarrollar diagramas de clases en plantuml de la siguiente funcionalidad:
+
+* Registro de los socios y de los no socios
+* Entrega de carnet y cobro de cuota mensual o diaria
+* Listado diario de los socios que en la fecha les vence la cuota
+
 == Diagramas de casos de uso
 
 ifdef::env-github[]
@@ -79,3 +95,128 @@ endif::[]
 == Diagramas de clases
 
 poner aca el diagrama de clases
+
+clases:
+    cliente. (agregar tipo de cliente socio, no socio)... Ojo, puede ser clase persona, y luego extender socio y no socio
+        datos del socio
+        nro socio
+
+    registro (cliente, aptoFisico)
+        apto-fisico
+        cliente
+
+    carnet(cliente)
+        entregar(cliente) -> se entrega a todos los clientes (socio y no socio) porque alli figura el nro de socio
+
+    cuota
+        atributos
+            fecha vencimiento
+            fecha pago
+            medio pago
+            actividad
+            nro socio
+        metodos
+            pagar
+
+    medios pago
+        id
+        nombre
+        cuotas-permitidas
+
+    actividad
+        id
+        nombre
+
+
+
+
+aca pongo la sugerencia de gpt
+
+
+ifdef::env-github[]
+[%collapsible]
+endif::[]
+ifndef::env-github[]
+[%collapsible%open]
+endif::[]
+====
+
+[plantuml, target=i880841834, svg]
+....
+@startuml
+
+!theme spacelab
+
+class Socio {
+    -nombre: String
+    -apellido: String
+    -dni: String
+    -fechaInscripcion: Date
+    -fechaVencimientoCuota: Date
+    -pagoAlDia(): Boolean
+    +registrarSocio(): void
+    +pagarCuota(cuota: Cuota): void
+}
+
+class NoSocio {
+    -nombre: String
+    -apellido: String
+    -dni: String
+}
+
+class Cuota {
+    -monto: Double
+    -fechaVencimiento: Date
+    -tipoCuota: String <<enumeration>> { Mensual, Diaria }
+    +cobrarCuota(): void
+}
+
+class Carnet {
+    -numeroCarnet: String
+    -fechaEmision: Date
+    -socio: Socio
+    +emitirCarnet(): void
+}
+
+class Profesor {
+    -nombre: String
+    -apellido: String
+    -dni: String
+    +reemplazarProfesor(): void
+}
+
+class AusenciaProfesor {
+    -fechaAusencia: Date
+    -profesor: Profesor
+    +registrarAusencia(): void
+    +asignarSuplente(): void
+}
+
+class PromocionPago {
+    -numeroCuotas: Integer <<enumeration>> { TresCuotas, SeisCuotas }
+    -descuento: Double
+    +aplicarPromocion(): void
+}
+
+class ListadoCuotasVencidas {
+    -fechaListado: Date
+    +generarListado(): void
+}
+
+Socio "1" -- "1" Carnet : recibe
+Socio "1" -- "1..*" Cuota : paga
+Cuota "0..*" -- "1" PromocionPago : incluye
+AusenciaProfesor "1" -- "1" Profesor : gestiona
+
+ListadoCuotasVencidas -- Socio : consulta
+
+@enduml
+
+
+....
+
+====
+
+ifdef::env-github[]
+image::i880841834.svg[] 
+endif::[]

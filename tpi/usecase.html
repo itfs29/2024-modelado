@@ -125,6 +125,34 @@ a {
 </div>
 <div id="content">
 <div class="sect1">
+<h2 id="_descripcion">Descripcion</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>La cuota se abona por adelantado, en efectivo o tarjeta de crédito. Si se abona con tarjeta de crédito existen promociones en 3 y 6 cuotas.
+La inscripción por primera vez en el club implica completar los datos de la ficha y presentar apto físico.
+Posee un plantel propio de profesores, y en caso de ausencias recurre al listado de suplentes para cubrirlos.
+Vencido el período de pago, automáticamente el socio no puede realizar actividades.
+Para retomar, debe pagar la cuota, y el plazo de pago comienza a correr a partir del día siguiente al vencimiento de la cuota.</p>
+</div>
+<div class="paragraph">
+<p>Desarrollar diagramas de clases en plantuml de la siguiente funcionalidad:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Registro de los socios y de los no socios</p>
+</li>
+<li>
+<p>Entrega de carnet y cobro de cuota mensual o diaria</p>
+</li>
+<li>
+<p>Listado diario de los socios que en la fecha les vence la cuota</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect1">
 <h2 id="_diagramas_de_casos_de_uso">Diagramas de casos de uso</h2>
 <div class="sectionbody">
 <details open>
@@ -155,12 +183,72 @@ a {
 <div class="paragraph">
 <p>poner aca el diagrama de clases</p>
 </div>
+<div class="paragraph">
+<p>clases:
+    cliente. (agregar tipo de cliente socio, no socio)&#8230;&#8203; Ojo, puede ser clase persona, y luego extender socio y no socio
+        datos del socio
+        nro socio</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>registro (cliente, aptoFisico)
+    apto-fisico
+    cliente</pre>
+</div>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>carnet(cliente)
+    entregar(cliente) -&gt; se entrega a todos los clientes (socio y no socio) porque alli figura el nro de socio</pre>
+</div>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>cuota
+    atributos
+        fecha vencimiento
+        fecha pago
+        medio pago
+        actividad
+        nro socio
+    metodos
+        pagar</pre>
+</div>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>medios pago
+    id
+    nombre
+    cuotas-permitidas</pre>
+</div>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>actividad
+    id
+    nombre</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>aca pongo la sugerencia de gpt</p>
+</div>
+<details open>
+<summary class="title">Details</summary>
+<div class="content">
+<div class="imageblock kroki">
+<div class="content">
+<img src="./images/i880841834-c62279876b77b9d896ca4c61938b7d0ded8847e8e61cbc738ff0cd1b4bb57d0f.svg" alt="i880841834">
+</div>
+</div>
+</div>
+</details>
 </div>
 </div>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2024-09-24 06:15:10 -0300
+Last updated 2024-09-24 09:24:21 -0300
 </div>
 </div>
 </body>
