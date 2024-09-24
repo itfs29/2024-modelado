@@ -2,6 +2,7 @@
 :imagesdir: ./images
 :doctype: book
 
+
 [role="big"]
 # Modelado y Diseño de Software
 # Comisión 1A
@@ -9,7 +10,6 @@
 # Marcelo Pereira
 # Gonzalo Coronel
 
-<<<
 :pagebreak:
 
 [mermaid, target=der, svg]
@@ -64,4 +64,3 @@ erDiagram
     CONTRATO }o--|| TOUR : "corresponde a"
     CONTRATO ||--o{ CUOTAS : "tiene"
 ....
-
