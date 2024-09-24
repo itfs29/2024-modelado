@@ -29,6 +29,7 @@ jobs:
           sparse-checkout: |
             tpi
             tp1
+            tools/kroki/docker-compose.yml
       - uses: reitzig/actions-asciidoctor@v2.0.1
         with:
           version: 2.0.18
