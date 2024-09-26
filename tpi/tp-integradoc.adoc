@@ -19,9 +19,7 @@ Desarrollar diagramas de clases en plantuml de la siguiente funcionalidad:
 * Entrega de carnet y cobro de cuota mensual o diaria
 * Listado diario de los socios que en la fecha les vence la cuota
 
-== Diagramas de casos de uso
-
-=== Socio
+== Diagrama de casos de uso
 
 ifdef::env-github[]
 [%collapsible]
@@ -37,13 +35,15 @@ endif::[]
 
 !theme spacelab
 
-:Socio: as cli
+:Cliente: as cli
 
-rectangle {
+:Administrativo: as adm
+
     (Registro) as (reg)
-    (Pago Cuota) as (pago)
+    (Pago) as (pago)
     (Entregar Carnet) as (entcar)
-}
+    (Reporte vencimientos del dia) as (vendia)
+    (adm) --> (vendia)
 
 (cli) -r-> (reg)
 (reg) --> (pago)
@@ -53,84 +53,9 @@ rectangle {
 
 @enduml
 ....
-
 ====
 ifdef::env-github[]
 image::i2599146368.svg[] 
-endif::[]
-
-
-
-
-=== No socio
-
-
-ifdef::env-github[]
-[%collapsible]
-endif::[]
-ifndef::env-github[]
-[%collapsible%open]
-endif::[]
-====
-
-[plantuml, target=i4011554949, svg]
-....
-@startuml
-
-!theme spacelab
-
-:No Socio: as cli
-
-rectangle {
-    (Registro) as (reg)
-    (Pago de Actividad) as (pago)
-}
-
-(cli) -r-> (reg)
-(reg) --> (pago)
-(cli) -r-> (pago)
-
-
-@enduml
-....
-
-====
-ifdef::env-github[]
-image::i4011554949.svg[] 
-endif::[]
-
-
-
-=== Admistrador
-
-ifdef::env-github[]
-[%collapsible]
-endif::[]
-ifndef::env-github[]
-[%collapsible%open]
-endif::[]
-====
-
-[plantuml, target=i32791283, svg]
-....
-@startuml
-
-!theme spacelab
-
-:Administrativo: as adm
-
-rectangle {
-    (Reporte vencimientos del dia) as (vendia)
-    (adm) -r-> (vendia)
-}
-
-@enduml
-....
-
-====
-
-ifdef::env-github[]
-image::i32791283.svg[] 
 endif::[]
 
 == Diagramas de clases
@@ -156,22 +81,15 @@ class Persona {
 }
 
 class Socio {
+    -nroCarnet: int
+    -carnetEmitido: Boolean
     -fechaInscripcion: Date
     -cuotaDiaVencimiento: Int
     -cuotaFechaUltimoPago: Int
     -cuotas: Cuota[]
-    -carnet: Carnet
     +registrar(): Socio
     +pagar(cuota: Cuota): void
 }
-
-class Carnet {
-    -numeroCarnet: Int
-    -fechaEmision: Date
-    +emitir(socio: Socio): void
-}
-
-Socio *-- Carnet
 
 
 class NoSocio {
@@ -195,28 +113,12 @@ class Cuota {
     -fechaVencimiento: Date
     -cantidadCuotas: Int
     -fechaPago: Date
-    -medioPago: MedioPago
+    -medioPago: String
 }
 
 Socio *-- Cuota
 
-class MedioPago {
-    -cuotasPermitidas: Int
-    -nombre: String
-}
-
-class ReporteVencimientos {
-    +generar(fechaVencimiento): List<Socio>
-}
-
-
-Cuota *-- MedioPago
-
-ReporteVencimientos o-- Socio
-
 @enduml
-
-
 ....
 
 ====
@@ -224,3 +126,5 @@ ReporteVencimientos o-- Socio
 ifdef::env-github[]
 image::i880841834.svg[] 
 endif::[]
+
+
