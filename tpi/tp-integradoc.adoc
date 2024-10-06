@@ -3,6 +3,9 @@
 
 = Trabajo Practico integrador
 
+image::2024-10-06T11-45-51-457Z.png[]
+
+<<<
 
 == Descripcion
 
@@ -21,42 +24,7 @@ Desarrollar diagramas de clases en plantuml de la siguiente funcionalidad:
 
 == Diagrama de casos de uso
 
-ifdef::env-github[]
-[%collapsible]
-endif::[]
-ifndef::env-github[]
-[%collapsible%open]
-endif::[]
-====
-
-[plantuml, target=i2599146368, svg]
-....
-@startuml
-
-!theme spacelab
-
-:Cliente: as cli
-
-:Administrativo: as adm
-
-    (Registro) as (reg)
-    (Pago) as (pago)
-    (Entregar Carnet) as (entcar)
-    (Reporte vencimientos del dia) as (vendia)
-    (adm) --> (vendia)
-
-(cli) -r-> (reg)
-(reg) --> (pago)
-(reg) <.r. (entcar)
-(cli) -r-> (pago)
-
-
-@enduml
-....
-====
-ifdef::env-github[]
-image::i2599146368.svg[] 
-endif::[]
+image::2024-10-06T11-39-31-409Z.png[]
 
 == Diagramas de clases
 
