@@ -1,0 +1,1 @@
+asciidoctor-pdf -r asciidoctor-kroki -a allow-uri-read --theme boldt-theme.yml -a pdf-themesdir=theme .\tp-integradoc.ado
