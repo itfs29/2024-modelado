@@ -111,36 +111,22 @@ endif::[]
 
 [mermaid, target=k503774163, svg]
 ....
-
 sequenceDiagram
-    
-    CLIENTE->>+REGISTRAR: APELLIDO, DNI, TIPO CLIENTE, PRESENTA APTO FISICO
-    REGISTRAR->>+VALIDAR: DATOS CLIENTE
-    alt Apto Fisico no Presentado
-        VALIDAR-->>REGISTRAR: Error: debe presentar apto fisico
-        REGISTRAR-->>CLIENTE: Mostrar error
+
+    CLIENTE->>PERSONA: REGISTRAR(APELLIDO, DNI, TIPO CLIENTE, PRESENTA APTO FISICO)
+    alt No presento Apto Fisico 
+        PERSONA-->>CLIENTE: Mostrar error: debe presentar apto fisico
     end
-    alt Buscar DNI
-        VALIDAR-->>REGISTRAR: Error: cliente ya existe
-        REGISTRAR-->>CLIENTE: mostrar error
+    alt DNI EXISTENTE
+        PERSONA-->>CLIENTE: Mostrar error: cliente ya registrado
     end
-    VALIDAR-->>-REGISTRAR: datos correctos
-    REGISTRAR->>+BASE DE DATOS: persistir cliente
-    alt Error al persistir
-        BASE DE DATOS-->>REGISTRAR: Error: no se puede persistir en base de datos
-        REGISTRAR-->>CLIENTE: mostrar error
+    CLIENTE-)PERSONA: Emitir Carnet
+    CLIENTE->>CUOTA: Cobrar
+    alt Probemas en cobro
+        CUOTA-->>CLIENTE: Hubo un error al intentar cobrar
     end
-    BASE DE DATOS-->>-REGISTRAR: persistencia correcta
-    alt tipo-cliente=socio
-        REGISTRAR-)EMITIR CARNET: emitir carnet
-    end
-    REGISTRAR->>+COBRAR: cobrar
-    alt Error al persistir
-        COBRAR-->>REGISTRAR: Error: error al cobrar
-        REGISTRAR-->>CLIENTE: Mostrar error
-    end
-    COBRAR-->>-REGISTRAR: COBRO OK
-    REGISTRAR->>-CLIENTE: mostrar "Operación exitosa"
+    CUOTA-->>CLIENTE: Cobro exitoso
+
 ....
 
 ====
