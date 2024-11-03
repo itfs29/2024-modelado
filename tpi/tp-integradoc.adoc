@@ -42,6 +42,16 @@ endif::[]
 
 !theme spacelab
 
+class Registrador {
+    +IngresarDni()
+    +IngresarDatosCliente()
+    +IngresarTipoCliente()
+}
+
+Registrador *-- Persona
+Registrador *-- Socio
+Registrador *-- NoSocio
+
 class Persona {
     -nombre: String
     -apellido: String
@@ -56,19 +66,18 @@ class Socio {
     -cuotaFechaUltimoPago: Int
     -cuotas: Cuota[]
     +registrar(): Socio
-    +pagar(cuota: Cuota): void
 }
 
 
 class NoSocio {
     -actividades: Actividad[]
     +registrar(): NoSocio
-    +pagar(actividad: Actividad): void
 }
 
 class Actividad {
     -nombre: String
     -importe: Double
+    +cobrar(NoSocio): void
 }
 
 NoSocio *-- Actividad
@@ -82,6 +91,7 @@ class Cuota {
     -cantidadCuotas: Int
     -fechaPago: Date
     -medioPago: String
+    +cobrar(socio): void
 }
 
 Socio *-- Cuota
@@ -113,20 +123,35 @@ endif::[]
 ....
 sequenceDiagram
 
-    CLIENTE->>PERSONA: REGISTRAR(APELLIDO, DNI, TIPO CLIENTE, PRESENTA APTO FISICO)
-    alt No presento Apto Fisico 
-        PERSONA-->>CLIENTE: Mostrar error: debe presentar apto fisico
+    CLIENTE->>+REGISTRADOR: Inicia registro
+    REGISTRADOR->>-CLIENTE: Pide ingreso de DNI
+    CLIENTE->>+REGISTRADOR: IngresarDni()
+    REGISTRADOR->>+PERSONA: BUSCAR(DNI)
+    alt SI DNI EXISTE
+        PERSONA-->>REGISTRADOR: Cliente existente
+        REGISTRADOR-->>CLIENTE: mostrar error: Cliente ya registrado
     end
-    alt DNI EXISTENTE
-        PERSONA-->>CLIENTE: Mostrar error: cliente ya registrado
+    PERSONA-->>-REGISTRADOR: Cliente apto para registrar
+    REGISTRADOR-->>-CLIENTE: Cliente apto para registrar
+    REGISTRADOR->>CLIENTE: Pide apellido, nombre, si presenta apto fisico
+    CLIENTE->>+REGISTRADOR:  IngresarDatosCliente(Apellido, Nombre, PresentaAptoFisico)
+    alt SI NO PresentaAptoFisico
+        REGISTRADOR-->>CLIENTE: Mostrar error: debe presentar apto fisico
     end
-    CLIENTE-)PERSONA: Emitir Carnet
-    CLIENTE->>CUOTA: Cobrar
-    alt Probemas en cobro
-        CUOTA-->>CLIENTE: Hubo un error al intentar cobrar
+    REGISTRADOR-->>-CLIENTE: Datos correctos
+    REGISTRADOR->>CLIENTE: Pide ingreso de "TIPO DE CLIENTE(SOCIO/NO-SOCIO)"
+    CLIENTE->>+REGISTRADOR: IngresarTipoCliente()
+    alt TIPO CLIENTE = SOCIO?
+        REGISTRADOR->>+SOCIO: REGISTRAR(dni, apellido, nombre, si presenta apto fisico)
+        SOCIO-)SOCIO: Emitir Carnet
+        SOCIO-->>-REGISTRADOR: Registro Ok
+        REGISTRADOR-)CUOTA: COBRAR(Socio)
+    else TIPO CLIENTE = NO-SOCIO?
+        REGISTRADOR->>+NO-SOCIO: REGISTRAR(dni, apellido, nombre, si presenta apto fisico)
+        NO-SOCIO-->>-REGISTRADOR: Registro Ok
+        REGISTRADOR-)ACTIVIDAD: COBRAR(NoSocio)
     end
-    CUOTA-->>CLIENTE: Cobro exitoso
-
+    REGISTRADOR-->>-CLIENTE: mensaje "Registro correcto"
 ....
 
 ====
@@ -136,4 +161,11 @@ image::k503774163.svg[]
 endif::[]
 
 //image::2024-10-28T00-03-55-265Z.png[]
+
+    // REGISTRADOR-)Cuota: 
+    // CLIENTE->>CUOTA: Cobrar
+    // alt Problemas en cobro
+    //     CUOTA-->>CLIENTE: Hubo un error al intentar cobrar
+    // end
+    // CUOTA-->>CLIENTE: Cobro exitoso
 
